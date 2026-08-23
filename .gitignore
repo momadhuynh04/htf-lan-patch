@@ -1,0 +1,6 @@
+bin/
+obj/
+out/
+*.patched.dll
+*.user
+.vs/
