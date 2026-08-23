@@ -6,7 +6,7 @@ This is a patched build of **How to Fish** (v1.0.0) that removes the Steam depen
 
 ## Download
 
-- **Patched full game:** [FullGame](https://vikingfile.com/f/ej4WPbu2NZ)
+- **Patched full game:** go to my github profile, on readme.md access my page there you will have the download link of full game playable
 
 Extract the archive anywhere and run `How to Fish.exe`. The patch is already applied.
 
