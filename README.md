@@ -8,6 +8,7 @@ This is a patched build of **How to Fish** (v1.0.0) that removes the Steam depen
 
 - **Patched full game:** go to my github profile, on readme.md access my page there you will have the download link of full game playable
 
+This game got a crashing bug in Win11 24H2 Home, detail : Unity 6000.4.4f1_360f97ecca93  build 26200. As a linux user, I don't use window very much but after some research I assume there currently no fix for this, if you current on this specific version I do not recommend you to download my version
 Extract the archive anywhere and run `How to Fish.exe`. The patch is already applied.
 
 ---
