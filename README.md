@@ -1,4 +1,4 @@
-# How to Fish — Multiplayer Patch (No Steam Required) — v1.0.9
+## How to Fish — LAN Patch — v1.0.9
 
 This is a patched build of **How to Fish** that removes the Steam dependency and adds **direct-IP multiplayer**, so you can play co-op with friends over LAN, a VPN, or the internet — no Steam account, no ownership check, no lobbies.
 
