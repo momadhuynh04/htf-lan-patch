@@ -10,12 +10,11 @@ This is a patched build of **How to Fish** that removes the Steam dependency and
 - **Debug log** is now written to `%TEMP%\htf_helper.log` for troubleshooting (path resolution, name lookup, fallback chain).
 - Verified working on **Windows 10** (LAN co-op, name change honoured, in-game chat).
 - v1.0.0 was known to crash on **Windows 11 24H2** in the Mono runtime (`mono-2.0-bdwgc.dll+0x28635D`). This is a Unity 6 / Win 11 24H2 incompatibility, **not a patch bug** — it also reproduces on IL2CPP builds. Use Win 10 / Win 11 23H2 if you hit it.
+- But now on v1.0.9 every is working
 
 ## Download
 
 - **Patched full game:** go to my github profile, on readme.md access my page there you will have the download link of full game playable
-
-`` This game got a crashing bug in Win11 24H2 Home, detail : Unity 6000.4.4f1_360f97ecca93  build 26200. As a linux user, I don't use window very much but after some research I assume there currently no fix for this, if you current on this specific version I do not recommend you to download my version ``
 
 Extract the archive anywhere and run `How to Fish.exe`. The patch is already applied.
 
