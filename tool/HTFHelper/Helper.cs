@@ -22,19 +22,23 @@ namespace HTF
 			try
 			{
 				string path = System.IO.Path.Combine(GetGameRoot(), "playername.txt");
+				TryLog("GetLocalName path=" + path + " exists=" + System.IO.File.Exists(path));
 				if (System.IO.File.Exists(path))
 				{
 					text = System.IO.File.ReadAllText(path).Trim();
+					TryLog("GetLocalName read='" + text + "' len=" + text.Length);
 				}
 			}
-			catch
+			catch (System.Exception ex)
 			{
+				TryLog("GetLocalName read exc=" + ex.Message);
 			}
 			if (string.IsNullOrEmpty(text))
 			{
 				try
 				{
 					text = Environment.UserName;
+					TryLog("GetLocalName fallback UserName='" + text + "'");
 				}
 				catch
 				{
@@ -100,12 +104,44 @@ namespace HTF
 		{
 			try
 			{
+				string dir = AppDomain.CurrentDomain.BaseDirectory;
+				if (!string.IsNullOrEmpty(dir))
+				{
+					TryLog("GetGameRoot BaseDirectory=" + dir);
+					return dir.TrimEnd('\\', '/');
+				}
+			}
+			catch (System.Exception ex)
+			{
+				TryLog("GetGameRoot BaseDirectory exc=" + ex.Message);
+			}
+			try
+			{
 				string location = typeof(HTFFake).Assembly.Location;
-				return System.IO.Directory.GetParent(System.IO.Directory.GetParent(location).FullName).FullName;
+				if (!string.IsNullOrEmpty(location))
+				{
+					string root = System.IO.Directory.GetParent(System.IO.Directory.GetParent(location).FullName).FullName;
+					TryLog("GetGameRoot Assembly=" + root);
+					return root;
+				}
+			}
+			catch (System.Exception ex)
+			{
+				TryLog("GetGameRoot Assembly exc=" + ex.Message);
+			}
+			TryLog("GetGameRoot fallback=. cwd=" + System.IO.Directory.GetCurrentDirectory());
+			return ".";
+		}
+
+		private static void TryLog(string msg)
+		{
+			try
+			{
+				string p = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "htf_helper.log");
+				System.IO.File.AppendAllText(p, "[" + System.DateTime.Now.ToString("HH:mm:ss.fff") + "] " + msg + "\n");
 			}
 			catch
 			{
-				return ".";
 			}
 		}
 	}
@@ -260,7 +296,8 @@ namespace HTF
 
 		private static void JoinDirectCore(ConnectionManager inst, string addressAndPort)
 		{
-			ParseAddress(addressAndPort, out var ip, out var port);
+			string ip; ushort port;
+			ParseAddress(addressAndPort, out ip, out port);
 			InvokePrivate(inst, "SetTransport", new object[1] { false });
 			FishNet.Transporting.Multipass.Multipass multipass = GetMultipass(inst);
 			FishNet.Transporting.UTP.UnityTransport unityTransport = GetUtp(multipass);
